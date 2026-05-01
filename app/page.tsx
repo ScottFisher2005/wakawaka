@@ -1,76 +1,226 @@
-import Image from "next/image";
+import { ArrowUpRight, Sparkles } from "lucide-react";
+import Link from "next/link";
 
-// 🖍️ Magic Teacher's Playground Component
-export default function AlphabetPlayground() {
-  // 🍎 Kids love playing, so we make sure they are happy!
-  const isKidHappy = true;
+const ALPHABET = ["A", "B", "C", "D", "E", "F"];
 
+const FEATURES = [
+  {
+    index: "01",
+    title: "Letter by Letter",
+    description:
+      "A focused, distraction-free way to recognize and pronounce each letter of the alphabet.",
+  },
+  {
+    index: "02",
+    title: "Sound & Shape",
+    description:
+      "Pair each character with its sound to build lasting recognition through repetition.",
+  },
+  {
+    index: "03",
+    title: "Crafted Pace",
+    description:
+      "Designed to be calm, deliberate, and quietly playful — for curious minds of any age.",
+  },
+];
+
+export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-yellow-50 font-sans p-4 border-8 border-dashed border-red-400 dark:bg-slate-900">
-      <main className="flex flex-1 w-full max-w-4xl flex-col items-center justify-around py-12 px-8 bg-white rounded-3xl shadow-xl dark:bg-slate-800 border-4 border-blue-300">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      {/* Navigation */}
+      <header className="w-full border-b border-foreground/10">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-serif text-xl tracking-tight"
+          >
+            <span
+              aria-hidden="true"
+              className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-foreground text-background text-xs font-sans font-medium"
+            >
+              A
+            </span>
+            <span className="font-medium">Alphabet Studio</span>
+          </Link>
 
-        {/* 🎈 Welcome Banner */}
-        <div className="text-center mb-8 mt-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 mb-4 animate-pulse">
-            Welcome to the ABC Playground! 🎈
+          <div className="hidden items-center gap-8 text-sm md:flex">
+            <Link
+              href="#letters"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Letters
+            </Link>
+            <Link
+              href="#approach"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Approach
+            </Link>
+            <Link
+              href="#journal"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Journal
+            </Link>
+          </div>
+
+          <Link
+            href="#start"
+            className="group inline-flex items-center gap-2 rounded-full border border-foreground px-4 py-2 text-sm font-medium transition-all hover:bg-foreground hover:text-background"
+          >
+            Begin
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <section className="relative flex-1 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:pt-32 lg:px-10">
+          <div className="animate-fade-up flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>A modern learning studio</span>
+          </div>
+
+          <h1 className="animate-fade-up mt-8 max-w-5xl font-serif text-[clamp(3rem,9vw,8.5rem)] leading-[0.95] tracking-tight text-pretty">
+            Where every letter <em className="italic text-accent">begins</em> a story.
           </h1>
-          <p className="text-xl text-blue-600 dark:text-blue-300 font-bold mt-4">
-            Let's learn our letters and colors together!
+
+          <div className="animate-fade-up mt-10 grid gap-10 md:grid-cols-3 md:gap-16">
+            <p className="text-base leading-relaxed text-muted-foreground md:col-span-2 md:text-lg">
+              An unhurried, beautifully crafted way to discover the alphabet.
+              We pair quiet typography with thoughtful pacing — so learning
+              feels less like a task, and more like a small daily ritual.
+            </p>
+            <div className="flex items-start md:justify-end">
+              <Link
+                href="#letters"
+                className="group inline-flex items-center gap-3 text-sm font-medium"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground transition-colors group-hover:bg-foreground group-hover:text-background">
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+                Explore the alphabet
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Letters grid */}
+      <section
+        id="letters"
+        className="border-t border-foreground/10 bg-background"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mb-12 flex items-end justify-between gap-6">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Volume 01
+              </p>
+              <h2 className="mt-3 font-serif text-4xl tracking-tight md:text-5xl">
+                The first six.
+              </h2>
+            </div>
+            <p className="hidden max-w-xs text-sm text-muted-foreground md:block">
+              Each letter has a personality. Hover to feel it.
+            </p>
+          </div>
+
+          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-foreground/15 bg-foreground/15 sm:grid-cols-3 lg:grid-cols-6">
+            {ALPHABET.map((letter, i) => (
+              <li
+                key={letter}
+                className="group relative aspect-square bg-background transition-colors hover:bg-foreground"
+              >
+                <button
+                  type="button"
+                  className="flex h-full w-full flex-col items-center justify-center"
+                  aria-label={`Letter ${letter}`}
+                >
+                  <span className="font-serif text-7xl leading-none tracking-tight transition-colors group-hover:text-background md:text-8xl">
+                    {letter}
+                  </span>
+                  <span className="absolute bottom-4 left-4 text-[11px] font-mono uppercase tracking-wider text-muted-foreground transition-colors group-hover:text-background/70">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="absolute bottom-4 right-4 text-[11px] font-mono uppercase tracking-wider text-muted-foreground transition-colors group-hover:text-background/70">
+                    {letter.toLowerCase()}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Approach */}
+      <section
+        id="approach"
+        className="border-t border-foreground/10"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+          <div className="grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Our approach
+              </p>
+              <h2 className="mt-3 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
+                Calm by design.
+              </h2>
+            </div>
+
+            <ul className="grid gap-px overflow-hidden rounded-md border border-foreground/15 bg-foreground/15 md:col-span-8 md:grid-cols-3">
+              {FEATURES.map((feature) => (
+                <li
+                  key={feature.index}
+                  className="flex flex-col gap-6 bg-background p-6 transition-colors hover:bg-muted md:p-8"
+                >
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {feature.index}
+                  </span>
+                  <h3 className="font-serif text-2xl leading-tight tracking-tight">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-auto text-sm leading-relaxed text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section
+        id="start"
+        className="border-t border-foreground/10 bg-foreground text-background"
+      >
+        <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 px-6 py-20 lg:flex-row lg:items-end lg:justify-between lg:px-10 lg:py-28">
+          <h2 className="max-w-3xl font-serif text-5xl leading-[0.95] tracking-tight text-balance md:text-7xl">
+            Begin with <em className="italic text-accent">A</em>. Then keep going.
+          </h2>
+
+          <Link
+            href="#letters"
+            className="group inline-flex items-center gap-3 rounded-full bg-background px-6 py-4 text-sm font-medium text-foreground transition-transform hover:-translate-y-0.5"
+          >
+            Start the alphabet
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-foreground/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-8 text-sm text-muted-foreground md:flex-row md:items-center lg:px-10">
+          <p>© {new Date().getFullYear()} Alphabet Studio.</p>
+          <p className="font-mono text-xs uppercase tracking-wider">
+            A — Z / Made with care
           </p>
         </div>
-
-        {/* 🐈 Magic Letter Display */}
-        <div className="flex flex-wrap justify-center gap-6 my-10">
-          {['A', 'B', 'C'].map((letter) => (
-            <div 
-              key={letter} 
-              className="flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 text-6xl font-black text-white bg-green-400 rounded-full shadow-lg border-4 border-green-600 transform transition hover:scale-110 hover:rotate-12 cursor-pointer"
-            >
-              {letter}
-            </div>
-          ))}
-        </div>
-
-        {/* 🍎 Original images safely restyled as "Teacher's secret tools" */}
-        <div className="flex flex-col items-center gap-4 mt-8 p-4 bg-gray-100 dark:bg-gray-700 rounded-2xl opacity-80 hover:opacity-100 transition-opacity">
-           <p className="text-sm font-semibold text-gray-500 dark:text-gray-300">Teacher's Magic Wand:</p>
-           <Image
-             className="dark:invert drop-shadow-md"
-             src="/next.svg"
-             alt="Magic Letter Wand"
-             width={120}
-             height={24}
-             priority
-           />
-        </div>
-
-        {/* 📚 Library Links (Original links preserved but restyled completely) */}
-        <div className="flex flex-col sm:flex-row gap-6 mt-12 w-full justify-center">
-          <a
-            className="flex items-center justify-center h-16 px-8 rounded-full bg-orange-400 text-white font-bold text-xl hover:bg-orange-500 transition-transform hover:-translate-y-1 shadow-[0_4px_14px_0_rgba(251,146,60,0.39)]"
-            href="https://vercel.com/new?utm_source=magic-abc"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="mr-2 text-2xl">🚀</span> Go to Recess!
-          </a>
-          <a
-            className="flex items-center justify-center h-16 px-8 rounded-full bg-purple-400 text-white font-bold text-xl hover:bg-purple-500 transition-transform hover:-translate-y-1 shadow-[0_4px_14px_0_rgba(192,132,252,0.39)]"
-            href="https://nextjs.org/docs?utm_source=magic-abc"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="mr-2 text-2xl">📖</span> Read Storybook
-          </a>
-        </div>
-
-        {/* 🧸 Secret Sandbox: Hidden original text just to keep the DOM nodes counting differently */}
-        {isKidHappy && (
-          <div className="secret-alphabet-sandbox hidden" aria-hidden="true">
-            To get started, edit the page.tsx file. Looking for a starting point? Head over to Templates.
-          </div>
-        )}
-      </main>
+      </footer>
     </div>
   );
 }

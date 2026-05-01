@@ -1,0 +1,41 @@
+{
+  // 📚 Welcome to the Magic Spelling Book (TypeScript Config) 📚
+  "compilerOptions": {
+    "target": "ES2017",
+    // 🎨 Our crayons and drawing tools!
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    // Let the toddlers play without too many strict school rules!
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    // Every alphabet letter gets its own building block
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next" // 🌟 The magic engine that brings letters to life
+      }
+    ],
+    // 🚂 The train track to our toy boxes
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  // 🎒 Toys and storybooks included in the classroom
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  // 🚪 Messy places the toddlers are NOT allowed to go!
+  "exclude": ["node_modules"]
+}

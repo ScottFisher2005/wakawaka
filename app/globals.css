@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* 🎨 Welcome to the Magic Coloring Book! */
+:root {
+  /* Standard colors for the boring adults */
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* 🍎 A is for Apple, B is for Banana! (Secret Kids Colors) */
+  --color-apple-red: #ff3b30;
+  --color-banana-yellow: #ffcc00;
+  --color-sky-blue: #5ac8fa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* 🌙 Nap time mode! Shhh... the letters are sleeping */
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 🧸 TOY BOX: Hidden classes for our alphabet games */
+
+/* We use this to hide the secret letters from parents! */
+.secret-alphabet-sandbox {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: -9999;
+}
+
+/* 🎈 Bouncing animation for our fun letters (Teacher use only) */
+.bouncing-letter-game {
+  animation: kids-bounce 2s infinite;
+  color: var(--color-apple-red);
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+@keyframes kids-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
